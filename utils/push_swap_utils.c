@@ -10,31 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 void    display_lst(t_list *stack_a, t_list *stack_b)
 {
     if (stack_a == NULL && stack_b == NULL)
     {
-        ft_printf("_ _\n");
-        ft_printf("a b\n");
+        printf("_ _\n");
+        printf("a b\n");
     }
     else
     {
         if (stack_b == NULL)
         {
-            ft_printf("%s \n", stack_a->val);
+            printf("%s|%d\n", (char*)stack_a->val, stack_a->index);
             display_lst(stack_a->next, NULL);
         }
         else if (stack_a == NULL)
         {
-            ft_printf("  %s\n", stack_b->val);
+            printf("  %s|%d\n", (char*)stack_b->val, stack_b->index);
             display_lst(NULL, stack_b->next);
         }
         else
         {
-            ft_printf("%s ", stack_a->val);
-            ft_printf("%s\n", stack_b->val);
+            printf("%s|%d ", (char*)stack_a->val, stack_a->index);
+            printf("%s|%d\n", (char*)stack_b->val, stack_b->index);
             display_lst(stack_a->next, stack_b->next);
         }
     }
@@ -44,11 +44,11 @@ void    display_lst_single(t_list *stack)
 {
     if (stack == NULL)
     {
-        ft_printf("_\n");
+        printf("_\n");
     }
     else
     {
-        ft_printf("%s\n", stack->val);
+        printf("%s|%d\n", (char*)stack->val, stack->index);
         display_lst_single(stack->next);
     }     
 }

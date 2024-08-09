@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 void    init_null_stack(t_list **stack, size_t size)
 {
@@ -19,24 +19,24 @@ void    init_null_stack(t_list **stack, size_t size)
         stack = NULL;
         return ;
     }
-    *stack = ft_lstnew(NULL);
+    *stack = ft_lstnew(NULL, -1);
     if (*stack == NULL)
         return ;
     init_null_stack(&(*stack)->next, size - 1);
 }
 
-void    init_stack(t_list **stack, int *to_init)
+void    init_stack(t_list **stack, char **parsed, int *indexes)
 {
-    if (*to_init == -1)
+    if (*indexes == -1)
     {
         *stack = NULL;
         return ;
     }
-    *stack = ft_lstnew(ft_itoa(*to_init));
-    *to_init = 0;
+    *stack = ft_lstnew(*parsed, *indexes);
+    //*indexes = -1;
     if (*stack == NULL)
         return ;
-    init_stack(&(*stack)->next, (to_init + 1));
+    init_stack(&(*stack)->next, (parsed + 1), (indexes + 1));
 }
 
 int main(int argc, char **argv)
@@ -64,9 +64,14 @@ int main(int argc, char **argv)
         free(simplified);
         return(0);
     }
-    init_stack(&stack_a, simplified);
+    argv++;
+    init_stack(&stack_a, argv, simplified);
     init_null_stack(&stack_b, ft_lstsize(stack_a));
-    big_sort(&stack_a, &stack_b, argc - 1, get_steps(argv));
+    display_lst(stack_a, stack_b);
+    if(argc - 1 <= 5)
+        small_sort(&stack_a, &stack_b);
+    else
+        big_sort(&stack_a, &stack_b, argc - 1, get_steps(argv));
     display_lst(stack_a, stack_b);
     free(stack_a);
     free(stack_b);

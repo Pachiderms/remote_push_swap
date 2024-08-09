@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 int *to_int_list(char **input, int size)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 int	ft_lstsize(t_list *stack)
 {
@@ -22,7 +22,7 @@ int	ft_lstsize(t_list *stack)
 		return (1 + ft_lstsize(stack->next));
 }
 
-t_list	*ft_lstnew(void *_val)
+t_list	*ft_lstnew(void *_val, int _index)
 {
 	t_list	*node;
 
@@ -34,6 +34,7 @@ t_list	*ft_lstnew(void *_val)
 	if (node == NULL)
 		return (NULL);
     node->val = _val;
+	node->index = _index;
 	node->next = NULL;
 	return (node);
 }

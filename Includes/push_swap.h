@@ -19,6 +19,7 @@ typedef struct s_list
 {
 	void			*val;
 	struct s_list	*next;
+	int				index;
 }   t_list;
 
 //utils
@@ -28,6 +29,7 @@ int is_sorted(int *s, int size);
 
 //sort
 void	big_sort(t_list **s_a, t_list **s_b, int size, int steps);
+void    small_sort(t_list **s_a, t_list **s_b);
 
 int		push_swap(t_list *stack);
 int		check_input(char **arg);
@@ -37,11 +39,19 @@ void	rotate(t_list **stack);
 void	reverse_rotate(t_list **stack);
 void    display_lst(t_list *stack_a, t_list *stack_b);
 void    display_lst_single(t_list *stack);
-
 void    del_last(t_list **stack);
 
+//call
+void    call_ra(t_list **stack_a);
+void    call_rb(t_list **stack_b);
+void    call_rr(t_list **stack_a, t_list **stack_b);
+
+void    call_rra(t_list **stack_a);
+void    call_rrb(t_list **stack_b);
+void    call_rrr(t_list **stack_a, t_list **stack_b);
+
 //t_list
-t_list	*ft_lstnew(void *_val);
+t_list	*ft_lstnew(void *_val, int _index);
 void	ft_lstadd_front(t_list **stack, t_list *new);
 int		ft_lstsize(t_list *stack);
 t_list	*ft_lstlast(t_list *stack);

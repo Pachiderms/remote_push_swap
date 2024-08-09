@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 int check_input(char **arg)
 {

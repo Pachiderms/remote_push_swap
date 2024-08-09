@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   big_sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tzizi <tzizi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 int get_steps(char **input)
 {
@@ -33,15 +33,14 @@ void    step(t_list **s_a, t_list **s_b, int step)
         return ;
     else
     {
-        if((ft_atoi((*s_a)->val) & step) == 0)
+        if(((*s_a)->index & step) == 0)
         {
             push(s_b, s_a);
             ft_putendl_fd("pb", 1);
         }
         else
         {
-            rotate(s_a);
-            ft_putendl_fd("ra", 1);
+            call_ra(s_a);
         }
     }
 }
@@ -66,7 +65,10 @@ void    big_sort(t_list **s_a, t_list **s_b, int size, int steps)
         while (i-- > 0)
             step(s_a, s_b, ft_pow(j));
         while (*s_b != NULL)
+        {
             push(s_a, s_b);
+            ft_putendl_fd("pa", 1);
+        }
         j++;
     }
 }

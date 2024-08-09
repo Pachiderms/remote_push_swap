@@ -1,8 +1,9 @@
 NAME = push_swap.a
 
-PUSHSWAP = src/push_swap.c src/push_swap_utils.c \
-	src/checker.c src/t_list_utils.c src/sort.c \
-	utils/simplify.c utils/42_functions.c \
+PUSHSWAP = src/push_swap.c utils/push_swap_utils.c \
+	src/checker.c utils/t_list_utils.c src/big_sort.c \
+	utils/simplify.c utils/42_functions.c utils/do_reverse_rotate.c \
+	utils/do_rotate.c src/small_sort.c \
 
 PRINTF = printf
 
