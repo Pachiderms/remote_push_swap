@@ -12,63 +12,46 @@
 
 #include "../includes/push_swap.h"
 
-int get_steps(char **input)
+int get_steps(t_list *stack)
 {
+    int j;
     int     max_steps;
 
     max_steps = 0;
-    input++;
-    while (*input)
+    while (stack)
     {
-        if ((int)ft_strlen(*input) > max_steps)
-            max_steps = (int)ft_strlen(*input);
-        input++;
+        j = 0;
+        while (stack->index >> j)
+            j++;
+        if (j > max_steps)
+            max_steps = j;
+        stack = stack->next;
     }
     return (max_steps);
 }
 
-void    step(t_list **s_a, t_list **s_b, int step)
-{
-    if(*s_a == NULL)
-        return ;
-    else
-    {
-        if(((*s_a)->index & step) == 0)
-        {
-            push(s_b, s_a);
-            ft_putendl_fd("pb", 1);
-        }
-        else
-        {
-            call_ra(s_a);
-        }
-    }
-}
-
-int ft_pow(int i)
-{
-    if (i == 0)
-        return (1);
-    else
-        return (2 * ft_pow(i - 1));
-}
-
-void    big_sort(t_list **s_a, t_list **s_b, int size, int steps)
+void    big_sort(t_list **s_a, t_list **s_b)
 {
     int i;
     int j;
+    int size;
+    int steps;
     
     j = 0;
+    size = ft_lstsize(*s_a);
+    steps = get_steps(*s_a);
     while (j < steps)
     {
-        i = size;
-        while (i-- > 0)
-            step(s_a, s_b, ft_pow(j));
-        while (*s_b != NULL)
+        i = 0;
+        while (i++ < size)
         {
-            push(s_a, s_b);
-            ft_putendl_fd("pa", 1);
+            if((((*s_a)->index >> j) & 1) == 1)
+                call_ra(s_a);
+            else
+                call_pb(s_b, s_a);
         }
+        while (*s_b != NULL)
+            call_pa(s_a, s_b);
         j++;
     }
 }

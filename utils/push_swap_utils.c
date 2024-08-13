@@ -12,6 +12,34 @@
 
 #include "../includes/push_swap.h"
 
+void    display_lst_noindex(t_list *stack_a, t_list *stack_b)
+{
+    if (stack_a == NULL && stack_b == NULL)
+    {
+        printf("_ _\n");
+        printf("a b\n");
+    }
+    else
+    {
+        if (stack_b == NULL)
+        {
+            printf("%s\n", (char*)stack_a->val);
+            display_lst_noindex(stack_a->next, NULL);
+        }
+        else if (stack_a == NULL)
+        {
+            printf("  %s\n", (char*)stack_b->val);
+            display_lst_noindex(NULL, stack_b->next);
+        }
+        else
+        {
+            printf("%s ", (char*)stack_a->val);
+            printf("%s\n", (char*)stack_b->val);
+            display_lst_noindex(stack_a->next, stack_b->next);
+        }
+    }
+}
+
 void    display_lst(t_list *stack_a, t_list *stack_b)
 {
     if (stack_a == NULL && stack_b == NULL)
